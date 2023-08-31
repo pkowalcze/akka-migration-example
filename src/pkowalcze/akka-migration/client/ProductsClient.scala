@@ -5,11 +5,13 @@ import cats.syntax.all._
 import org.typelevel.log4cats.LoggerFactory
 import pkowalcze.akkamigration.Domain.Product
 import pkowalcze.akkamigration.Endpoints
+import sttp.client3.SttpBackend
 import sttp.client3._
 import sttp.model.Uri
 import sttp.tapir.DecodeResult
-import sttp.tapir._
-import sttp.tapir.client.sttp._
+import sttp.tapir.PublicEndpoint
+import sttp.tapir.client.sttp.SttpClientInterpreter
+import sttp.tapir.client.sttp.SttpClientOptions
 
 trait ProductsClient[F[_]] {
   def getProducts(id: String): F[Product]
